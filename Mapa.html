@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa de Lima + Tareas</title>
+    <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+
+    <header>
+        <div class="container header-content">
+            <li><h1 class="logo">RutaProtect</h1></li>
+            <nav>
+                <ul>
+                    <li><a href="index.html#inicio">Inicio</a></li>
+                    <li><a href="index.html#funcionalidades">Funcionalidades</a></li>
+                    <li><a href="index.html#app">App móvil</a></li>
+                    <li><a href="index.html#equipo">Equipo</a></li>
+                    <li><a href="index.html#contacto">Contacto</a></li>
+                    <li><a href="Mapa.html">Mapa</a></li>
+                </ul>
+            </nav>
+            <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
+        </div>
+    </header>
+
+
+    <div class="container">
+        <h2>Mapa de Lima</h2>
+
+        <!-- Embedded Google Map of Lima -->
+        <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d488364.49921093656!2d-77.2078617687896!3d-12.026603727276492!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c8c2aa2e0f3f%3A0x9ee439ad5db2f37b!2sLima!5e0!3m2!1ses-419!2spe!4v1700000000000">
+        </iframe>
+
+        <h2>Lista de Tareas</h2>
+
+        <!-- Tasks Table -->
+        <table>
+            <tr>
+                <th>Tarea</th>
+                <th>Responsable</th>
+                <th>Estado</th>
+                <th>Fecha Límite</th>
+            </tr>
+
+            <tr>
+                <td>Monitorear ruta Panamericana Norte</td>
+                <td>Juan Pérez</td>
+                <td>En progreso</td>
+                <td>2025-03-15</td>
+            </tr>
+
+            <tr>
+                <td>Verificar alertas en Ate</td>
+                <td>María López</td>
+                <td>Pendiente</td>
+                <td>2025-03-20</td>
+            </tr>
+
+            <tr>
+                <td>Actualizar mapa de zonas de riesgo</td>
+                <td>Carlos Díaz</td>
+                <td>Completado</td>
+                <td>2025-03-10</td>
+            </tr>
+
+        </table>
+    </div>
+
+</body>
+</html>

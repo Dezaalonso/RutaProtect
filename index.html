@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RutaProtect - Viaja Seguro</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header>
+        <div class="container header-content">
+            <li><h1 class="logo">RutaProtect</h1></li>
+            <nav>
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#funcionalidades">Funcionalidades</a></li>
+                    <li><a href="#app">App móvil</a></li>
+                    <li><a href="#equipo">Equipo</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                    <li><a href="Mapa.html">Mapa</a></li>
+                </ul>
+            </nav>
+            <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
+        </div>
+    </header>
+
+
+    <div id="id01" class="modal">
+
+        <div class="modal-content animate">
+    
+            <div class="imgcontainer">
+                <span onclick="document.getElementById('id01').style.display='none'" 
+                      class="close" title="Close Modal">&times;</span>
+                <img src="imagenes/profile.webp" alt="Avatar" class="avatar">
+            </div>
+    
+            <!-- Tabs -->
+            <div class="tabs">
+                <button class="tablink active" onclick="openForm(event, 'loginForm')">Login</button>
+                <button class="tablink" onclick="openForm(event, 'signupForm')">Signup Contratistas</button>
+            </div>
+    
+            <!-- ===== LOGIN FORM ===== -->
+            <form id="loginForm" class="tab-content" style="display:block;">
+    
+                <div class="container">
+                    <label><b>Username</b></label>
+                    <input type="text" placeholder="Enter Username" name="uname" required>
+    
+                    <label><b>Password</b></label>
+                    <input type="password" placeholder="Enter Password" name="psw" required>
+    
+                    <button type="submit">Login</button>
+    
+                    <label><input type="checkbox" checked name="remember"> Remember me</label>
+                </div>
+    
+                <div class="container" style="background:#f1f1f1">
+                    <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+                    <span class="psw">Forgot <a href="#">password?</a></span>
+                </div>
+            </form>
+    
+            <!-- ===== SIGNUP FORM ===== -->
+            <form id="signupForm" class="tab-content" style="display:none;">
+    
+                <div class="container">
+    
+                    <label><b>Nombre Completo</b></label>
+                    <input type="text" placeholder="Ingresa tu nombre" name="fullname" required>
+    
+                    <label><b>Email</b></label>
+                    <input type="email" placeholder="Ingresa tu email" name="email" required>
+    
+                    <label><b>Password</b></label>
+                    <input type="password" placeholder="Crea una contraseña" name="psw" required>
+    
+                    <label><b>Confirmar Password</b></label>
+                    <input type="password" placeholder="Repite la contraseña" name="psw-repeat" required>
+    
+                    <button type="submit">Registrar</button>
+                </div>
+    
+                <div class="container" style="background:#f1f1f1">
+                    <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancelar</button>
+                </div>
+    
+            </form>
+    
+        </div>
+    
+    </div>
+    
+    <script>
+    var modal = document.getElementById('id01');
+    
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    };
+    
+    function openForm(evt, formName) {
+    
+        var i, tabContent, tabLinks;
+    
+        tabContent = document.getElementsByClassName("tab-content");
+        for (i = 0; i < tabContent.length; i++) {
+            tabContent[i].style.display = "none";
+        }
+    
+        tabLinks = document.getElementsByClassName("tablink");
+        for (i = 0; i < tabLinks.length; i++) {
+            tabLinks[i].classList.remove("active");
+        }
+    
+        document.getElementById(formName).style.display = "block";
+        evt.currentTarget.classList.add("active");
+    }
+    </script>
+    <!-- ===== HERO ===== -->
+    <section id="inicio" class="hero">
+        <div class="container hero-content">
+            <div class="text">
+                <h2>Tu viaje más seguro comienza con <span>RutaProtect</span></h2>
+                <p>Monitorea tus rutas, recibe alertas y viaja con tranquilidad. Una app diseñada para la seguridad de cada conductor.</p>
+                <div class="botones">
+                    <a href="#funcionalidades" class="btn-primario">Conoce más</a>
+                    <a href="#app" class="btn-secundario">Ver prototipo</a>
+                </div>
+            </div>
+            <img src="https://cdn-icons-png.flaticon.com/512/3202/3202926.png" alt="RutaProtect App">
+        </div>
+    </section>
+
+    <!-- ===== FUNCIONALIDADES ===== -->
+    <section id="funcionalidades" class="features">
+        <div class="container">
+            <h3>Principales funcionalidades</h3>
+            <div class="feature-grid">
+                <div class="feature">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1475/1475925.png" alt="Ruta Segura">
+                    <h4>Ruta Segura</h4>
+                    <p>Genera trayectos optimizados según tu ubicación y nivel de seguridad vial de cada zona.</p>
+                </div>
+                <div class="feature">
+                    <img src="https://cdn-icons-png.flaticon.com/512/684/684908.png" alt="Alertas Inteligentes">
+                    <h4>Alertas Inteligentes</h4>
+                    <p>Recibe notificaciones en tiempo real sobre zonas de riesgo y condiciones de tránsito.</p>
+                </div>
+                <div class="feature">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1041/1041916.png" alt="Emergencias">
+                    <h4>Emergencias</h4>
+                    <p>Activa el botón SOS para enviar tu ubicación a contactos de emergencia y autoridades.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== APP MÓVIL ===== -->
+    <section id="app" class="app-section">
+        <div class="container app-content">
+            <img src="https://cdn-icons-png.flaticon.com/512/1055/1055687.png" alt="App Móvil">
+            <div class="text">
+                <h3>Disponible en Android e iOS</h3>
+                <p>Explora el prototipo interactivo desarrollado en Figma, diseñado con enfoque en accesibilidad, simplicidad y navegación segura.</p>
+                <a href="#" class="btn-primario">Explorar Prototipo</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== EQUIPO ===== -->
+    <section id="equipo" class="equipo">
+        <div class="container">
+            <h3>Equipo de desarrollo</h3>
+            <div class="team-grid">
+                <div class="team-member">
+                    <img src="https://cdn-icons-png.flaticon.com/512/219/219983.png" alt="Integrante 1">
+                    <p><strong>Aldo Daniel Atarama Díaz</strong><br>Gestión y Configuración del Proyecto</p>
+                </div>
+                <div class="team-member">
+                    <img src="https://cdn-icons-png.flaticon.com/512/236/236831.png" alt="Integrante 2">
+                    <p><strong>Integrante 2</strong><br>Diseño UX/UI y Wireframes</p>
+                </div>
+                <div class="team-member">
+                    <img src="https://cdn-icons-png.flaticon.com/512/236/236832.png" alt="Integrante 3">
+                    <p><strong>Integrante 3</strong><br>Implementación y Pruebas</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CONTACTO / FOOTER ===== -->
+    <footer id="contacto">
+        <div class="container footer-content">
+            <p>© 2025 RutaProtect | Proyecto académico - Universidad Peruana de Ciencias Aplicadas (UPC)</p>
+            <div class="socials">
+                <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook"></a>
+                <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram"></a>
+                <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="LinkedIn"></a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
