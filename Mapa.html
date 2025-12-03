@@ -21,7 +21,26 @@
                     <li><a href="Mapa.html">Mapa</a></li>
                 </ul>
             </nav>
-            <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
+            <button id="loginBtn" onclick="openLogin()" style="width:auto;">Login</button>
+            <script>
+            function openLogin() {
+                document.getElementById('id01').style.display = 'block';
+  }
+
+  // On page load, check LocalStorage
+            window.onload = function () {
+            const savedName = localStorage.getItem("nombre");
+            const button = document.getElementById("loginBtn");
+
+            if (savedName) {
+            loginBtn.textContent = "Bienvenido "+savedName;   // Replace button text with the name
+            loginBtn.onclick = null;            // Remove login popup action
+            loginBtn.style.cursor = "default";  // Visual hint that it's not clickable
+            
+            }
+            };
+            </script>
+
         </div>
     </header>
 

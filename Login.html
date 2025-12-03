@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://sql.js.org/dist/sql-wasm.js"></script>
+  <script src="db.js"></script>
+  <link rel="stylesheet" href="./Login.css" />
+</head>
+
+<body>
+
+<button onclick="loadUsers()">Load Users</button>
+
+<!-- SWITCH BUTTONS -->
+
+
+<!-- LOGIN FORM -->
+<!-- LOGIN FORM -->
+<form id="loginForm" class="tab-content" style="display:block;">
+  <div class="container">
+    <h2>Login</h2>
+
+    <label><b>Username</b></label>
+    <input id="loginUser" type="text" placeholder="Enter Username" required>
+
+    <label><b>Password</b></label>
+    <input id="loginPass" type="password" placeholder="Enter Password" required>
+
+    <button type="submit" class="primary-btn">Login</button>
+
+    <!-- Sign Up button BELOW login -->
+    <button type="button" class="link-btn" onclick="showSignup()">Create an account</button>
+  </div>
+</form>
+
+<!-- SIGNUP FORM -->
+<form id="signupForm" class="tab-content" style="display:none;">
+  <div class="container">
+    <h2>Sign Up</h2>
+
+    <label><b>Full Name</b></label>
+    <input id="signUser" type="text" placeholder="Enter your name" required>
+
+    <label><b>Password</b></label>
+    <input id="signPass" type="password" placeholder="Create a password" required>
+
+    <button type="submit" class="primary-btn">Register</button>
+
+    <!-- Back to login -->
+    <button type="button" class="link-btn" onclick="showLogin()">Back to Login</button>
+  </div>
+</form>
+
+
+<script>
+  // Load DB
+  window.onload = async () => {
+    await initDb("mydb.db");
+  };
+
+  function showLogin() {
+    document.getElementById("loginForm").style.display = "block";
+    document.getElementById("signupForm").style.display = "none";
+  }
+
+  function showSignup() {
+    document.getElementById("loginForm").style.display = "none";
+    document.getElementById("signupForm").style.display = "block";
+  }
+
+  // Show all users
+  function loadUsers() {
+    console.log("Users:", runQuery("SELECT * FROM users;"));
+    alert(JSON.stringify(runQuery("SELECT * FROM users;")));
+  }
+
+  // Signup handling
+  document.getElementById("signupForm").onsubmit = function (e) {
+    e.preventDefault();
+
+    const username = document.getElementById("signUser").value;
+    const password = document.getElementById("signPass").value;
+
+    if (addUser(username, password)) {
+      showLogin();
+       
+    } else {
+      alert("Error registering user");
+    }
+  };
+
+  // Login handling
+  document.getElementById("loginForm").onsubmit = function (e) {
+    e.preventDefault();
+
+    const username = document.getElementById("loginUser").value;
+    const password = document.getElementById("loginPass").value;
+
+    const rows = getUser(username, password);
+
+    if (rows.length > 0) {
+
+      console.log("Logged in user:", rows[0]);
+      localStorage.setItem('nombre', username)
+      window.location.href = "index.html";
+    } else {
+      alert("Incorrect username or password");
+    }
+  };
+</script>
+
+</body>
+</html>

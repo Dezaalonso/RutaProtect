@@ -1,0 +1,66 @@
+/* Center everything */
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background: #f4f4f4;
+  font-family: Arial, sans-serif;
+}
+
+/* Form container */
+.container {
+  background: white;
+  padding: 25px;
+  width: 320px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+/* Inputs */
+input {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+/* Primary buttons */
+.primary-btn {
+  width: 100%;
+  padding: 12px;
+  background: #0078ff;
+  border: none;
+  color: white;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.primary-btn:hover {
+  background: #005fcc;
+}
+
+/* Secondary / link buttons */
+.link-btn {
+  margin-top: 10px;
+  background: transparent;
+  border: none;
+  color: #0078ff;
+  cursor: pointer;
+  font-size: 14px;
+  text-decoration: underline;
+}
+
+.link-btn:hover {
+  color: #005fcc;
+}
+
+/* Headings */
+h2 {
+  margin-bottom: 20px;
+}
