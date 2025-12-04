@@ -23,25 +23,49 @@
                     <li><a href="Mapa.html">Mapa</a></li>
                 </ul>
             </nav>
-            <button id="loginBtn" onclick="window.location.href='Login.html'" style="width:auto;">Login</button>
+<div id="profileContainer">
+    <button id="loginBtn" onclick="window.location.href='Login.html'" style="width:auto;">Login</button>
+
+    <div id="profileDropdown" class="profile-dropdown" style="display:none;">
+        <button id="profileName" class="profile-btn"></button>
+        <div class="profile-menu">
+            <a href="#" id="logoutBtn">Cerrar sesión</a>
+        </div>
+    </div>
+</div>
             <script>
-            function openLogin() {
-                document.getElementById('id01').style.display = 'block';
-  }
+window.onload = function () {
+    const savedName = localStorage.getItem("nombre");
+    const loginBtn = document.getElementById("loginBtn");
+    const profileDropdown = document.getElementById("profileDropdown");
+    const profileName = document.getElementById("profileName");
 
-  // On page load, check LocalStorage
-            window.onload = function () {
-            const savedName = localStorage.getItem("nombre");
-            const button = document.getElementById("loginBtn");
+    if (savedName) {
+        // Hide login button
+        loginBtn.style.display = "none";
 
-            if (savedName) {
-            loginBtn.textContent = "Bienvenido "+savedName;   // Replace button text with the name
-            loginBtn.onclick = null;            // Remove login popup action
-            loginBtn.style.cursor = "default";  // Visual hint that it's not clickable
-            
-            }
-            };
-        </script>
+        // Show user dropdown
+        profileDropdown.style.display = "inline-block";
+        profileName.textContent = "Hola, " + savedName;
+
+        // Toggle dropdown on click
+        profileName.onclick = function () {
+            profileDropdown.classList.toggle("active");
+        };
+    }
+};
+
+// Logout
+document.addEventListener("DOMContentLoaded", () => {
+    const logoutBtn = document.getElementById("logoutBtn");
+
+    logoutBtn.onclick = function () {
+        localStorage.clear();
+        location.reload(); // reload page
+    };
+});
+</script>
+
 
         </div>
     </header>
