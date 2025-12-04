@@ -6,57 +6,149 @@
     <title>Mapa de Lima + Tareas</title>
     <link rel="stylesheet" href="./styles.css" />
 </head>
+
+<script>
+// ------------------ LOAD TASKS ------------------
+function loadTasks() {
+    const savedName = localStorage.getItem("nombre");
+    if (!savedName || savedName.trim() === "") return;
+
+    const storedTasks = JSON.parse(localStorage.getItem("extraTasks")) || [];
+    const table = document.getElementById("taskTable");
+
+    storedTasks.forEach(task => {
+        let row = table.insertRow();
+        row.innerHTML = `
+            <td>${task.tarea}</td>
+            <td>${task.responsable}</td>
+            <td>${task.estado}</td>
+            <td>${task.fecha}</td>
+        `;
+    });
+}
+
+// ------------------ ADD TASK ------------------
+function addTask() {
+    const tarea = document.getElementById("tarea").value.trim();
+    const responsable = document.getElementById("responsable").value.trim();
+    const estado = document.getElementById("estado").value.trim();
+    const fecha = document.getElementById("fecha").value;
+
+    if (!tarea || !responsable || !estado || !fecha) {
+        alert("Completa todos los campos");
+        return;
+    }
+
+    const table = document.getElementById("taskTable");
+    let row = table.insertRow();
+    row.innerHTML = `
+        <td>${tarea}</td>
+        <td>${responsable}</td>
+        <td>${estado}</td>
+        <td>${fecha}</td>
+    `;
+
+    let storedTasks = JSON.parse(localStorage.getItem("extraTasks")) || [];
+    storedTasks.push({ tarea, responsable, estado, fecha });
+    localStorage.setItem("extraTasks", JSON.stringify(storedTasks));
+
+    document.getElementById("tarea").value = "";
+    document.getElementById("responsable").value = "";
+    document.getElementById("estado").value = "";
+    document.getElementById("fecha").value = "";
+}
+
+// ------------------ ON LOAD ------------------
+window.onload = function () {
+    const savedName = localStorage.getItem("nombre");
+
+    const loginBtn = document.getElementById("loginBtn");
+    const profileDropdown = document.getElementById("profileDropdown");
+    const profileName = document.getElementById("profileName");
+    const taskSection = document.getElementById("taskSection");
+
+    if (savedName) {
+        loginBtn.style.display = "none";
+
+        profileDropdown.style.display = "inline-block";
+        profileName.textContent = "Hola, " + savedName;
+
+        profileName.onclick = function () {
+            profileDropdown.classList.toggle("active");
+        };
+
+        taskSection.style.display = "block";
+        loadTasks();
+
+    } else {
+        taskSection.style.display = "none";
+    }
+};
+
+// ------------------ LOGOUT ------------------
+document.addEventListener("DOMContentLoaded", () => {
+    const logoutBtn = document.getElementById("logoutBtn");
+
+    logoutBtn.onclick = function () {
+        localStorage.clear();
+        location.reload();
+    };
+});
+</script>
+
 <body>
 
-    <header>
-        <div class="container header-content">
-            <li><h1 class="logo">RutaProtect</h1></li>
-            <nav>
-                <ul>
-                    <li><a href="index.html#inicio">Inicio</a></li>
-                    <li><a href="index.html#funcionalidades">Funcionalidades</a></li>
-                    <li><a href="index.html#app">App móvil</a></li>
-                    <li><a href="index.html#equipo">Equipo</a></li>
-                    <li><a href="index.html#contacto">Contacto</a></li>
-                    <li><a href="Mapa.html">Mapa</a></li>
-                </ul>
-            </nav>
-            <button id="loginBtn" onclick="openLogin()" style="width:auto;">Login</button>
-            <script>
-            function openLogin() {
-                document.getElementById('id01').style.display = 'block';
-  }
+<header>
+    <div class="container header-content">
+        <li><h1 class="logo">RutaProtect</h1></li>
 
-  // On page load, check LocalStorage
-            window.onload = function () {
-            const savedName = localStorage.getItem("nombre");
-            const button = document.getElementById("loginBtn");
+        <nav>
+            <ul>
+                <li><a href="index.html#inicio">Inicio</a></li>
+                <li><a href="index.html#funcionalidades">Funcionalidades</a></li>
+                <li><a href="index.html#app">App móvil</a></li>
+                <li><a href="index.html#equipo">Equipo</a></li>
+                <li><a href="index.html#contacto">Contacto</a></li>
+                <li><a href="Mapa.html">Mapa</a></li>
+            </ul>
+        </nav>
 
-            if (savedName) {
-            loginBtn.textContent = "Bienvenido "+savedName;   // Replace button text with the name
-            loginBtn.onclick = null;            // Remove login popup action
-            loginBtn.style.cursor = "default";  // Visual hint that it's not clickable
-            
-            }
-            };
-            </script>
+        <div id="profileContainer">
+            <button id="loginBtn" onclick="window.location.href='Login.html'" style="width:auto;">Login</button>
 
+            <div id="profileDropdown" class="profile-dropdown" style="display:none;">
+                <button id="profileName" class="profile-btn"></button>
+                <div class="profile-menu">
+                    <a href="#" id="logoutBtn">Cerrar sesión</a>
+                </div>
+            </div>
         </div>
-    </header>
+    </div>
+</header>
 
+<div class="container">
 
-    <div class="container">
-        <h2>Mapa de Lima</h2>
+    <h2>Mapa de Lima</h2>
 
-        <!-- Embedded Google Map of Lima -->
-        <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d488364.49921093656!2d-77.2078617687896!3d-12.026603727276492!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c8c2aa2e0f3f%3A0x9ee439ad5db2f37b!2sLima!5e0!3m2!1ses-419!2spe!4v1700000000000">
-        </iframe>
+    <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d488364.49921093656!2d-77.2078617687896!3d-12.026603727276492!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c8c2aa2e0f3f%3A0x9ee439ad5db2f37b!2sLima!5e0!3m2!1ses-419!2spe!4v1700000000000">
+    </iframe>
+
+    <!-- ------------- TASK SECTION (HIDDEN IF NO LOGIN) ------------- -->
+    <div id="taskSection">
 
         <h2>Lista de Tareas</h2>
+        <h3>Añadir nueva tarea</h3>
 
-        <!-- Tasks Table -->
-        <table>
+        <div style="margin-bottom: 20px;">
+            <input id="tarea" placeholder="Tarea" />
+            <input id="responsable" placeholder="Responsable" />
+            <input id="estado" placeholder="Estado" />
+            <input id="fecha" type="date" />
+            <button onclick="addTask()">Agregar</button>
+        </div>
+
+        <table id="taskTable">
             <tr>
                 <th>Tarea</th>
                 <th>Responsable</th>
@@ -84,9 +176,10 @@
                 <td>Completado</td>
                 <td>2025-03-10</td>
             </tr>
-
         </table>
+
     </div>
+</div>
 
 </body>
 </html>
